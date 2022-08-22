@@ -9,12 +9,19 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
 
     private PlayerMotor motor;
+    private PlayerLook look;
+
+
     private void Awake()
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
         motor = GetComponent<PlayerMotor>();
+        look = GetComponent<PlayerLook>();
+
+
         onFoot.Jump.performed += ctx => motor.Jump();
+       
     }
 
     private void FixedUpdate()
@@ -40,5 +47,10 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         onFoot.Disable();
+    }
+
+    private void LateUpdate()
+    {
+        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
     }
 }
