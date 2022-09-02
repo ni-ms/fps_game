@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cube : Interactable
 {
+    //KEY TO INTERACT AND OPEN THE DOOR
     // Start is called before the first frame update
     void Start()
     {
